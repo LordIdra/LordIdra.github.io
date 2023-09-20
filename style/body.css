@@ -6,7 +6,7 @@ body {
 }
 
 .content-main {
-    padding-left: 200px;
+    /* padding-left: 200px; */
 }
 
 @media screen and (max-width: 600px) {
