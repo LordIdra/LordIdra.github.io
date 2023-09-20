@@ -1,0 +1,117 @@
+/* Toggle Menu */
+.main-menu-toggle-input {
+    display: none;
+}
+
+.main-menu-toggle-label {
+    position: fixed;
+    top: 6px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.main-menu-toggle-icon {
+    position: relative;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    filter: invert(60%);
+}
+
+@media screen and (max-width: 600px) {
+    .main-menu-toggle-input:checked ~ .main-menu-container {
+        transform: translate(0px);
+        transition: 0.5s;
+    }
+
+    .main-menu-toggle-input:not(:checked) ~ .main-menu-container {
+        transform: translate(-200px);
+        transition: 0.5s;
+    }
+}
+
+@media not screen and (max-width: 600px) {
+    .main-menu-toggle-label {
+        display: none;
+    }
+
+    .main-menu-toggle-container {
+        display: none;
+    }
+}
+
+
+/* Menu Components */
+.main-menu-container {
+    display: flexbox;
+    height: 100%;
+    width: 200px;
+    float: left;
+    background-color: rgb(33, 33, 36);
+    position: fixed;
+    z-index: 1;
+}
+
+.main-menu-heading-image {
+    width: 90%;
+}
+
+.main-menu-heading-box {
+    margin-top: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-menu-list-item a {
+    display: inline-block;
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition-duration: 100ms;
+    width: 98%;
+}
+
+.main-menu-list-item a:hover {
+    background-color: rgb(255, 255, 255, 0.1);
+    transition-duration: 100ms;
+}
+
+.main-menu-list {
+    list-style-type: none;
+    margin-block-start: 5px;
+    padding-inline-start: 0;
+}
+
+.main-menu-divider {
+    border-color: rgb(57, 57, 57);
+}
+
+.main-menu-section-title {
+    color: rgb(147, 147, 147);
+    font-family:monospace;
+    padding-left: 5px;
+}
+
+.main-menu-text a {
+    padding-left: 5px;
+    vertical-align: middle;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size:15px;
+    letter-spacing: 0.0em;
+    color:rgb(255, 255, 255);
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.main-menu-icon img {
+    padding-left: 15px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+    filter: invert(100%)
+}

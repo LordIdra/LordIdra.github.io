@@ -1,0 +1,66 @@
+.projects-div {
+    background: rgba(64, 64, 64, 0.495);
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width:500px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.projects-icon {
+    width: 16px;
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(30%) sepia(94%) saturate(2621%) hue-rotate(219deg) brightness(101%) contrast(101%);
+    float: left;
+}
+
+.projects-list-text-div {
+    margin-left: 17px;
+    margin-right: 10px;
+    display: flex;
+}
+
+.projects-see-all-div-1 {
+    background: rgba(64, 64, 64, 0.495);
+    border-radius: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width:500px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    transition-duration: 0.2s;
+}
+
+.projects-see-all-div-1:hover {
+    background: rgba(108, 108, 108, 0.495);
+    transition-duration: 0.2s;
+}
+
+.projects-see-all-div-2 {
+    margin-top: 20px;
+}
+
+.projects-see-all-text {
+    font-family:'Courier New', Courier;
+    font-size: 1.5em;
+    font-weight: 600;
+    color:rgb(178, 178, 178);
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    float: left;
+}
+
+.projects-see-all-icon {
+    width: 40px;
+    margin-block-start: -7px;
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(70%) sepia(13%) saturate(1788%) hue-rotate(164deg) brightness(103%) contrast(100%);
+}
+

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css"/>
+    
+    <link rel="stylesheet" href="style/body.css">
+
+    <link rel="stylesheet" href="style/index/education.css">
+    <link rel="stylesheet" href="style/index/main.css">
+    <link rel="stylesheet" href="style/index/projects.css">
+    <link rel="stylesheet" href="style/index/skills.css">
+    <link rel="stylesheet" href="style/index/title.css">
+
+    <link rel="stylesheet" href="style/components/main-menu.css">
+    <link rel="stylesheet" href="style/components/education-result-box.css">
+    
+    <link rel="icon" type = "image/png" href="image/logo.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A Minecraft server with Slimefun, Aurelium Skills, custom plugins, no donation store, an amazing community, and so much more. Automate to your heart's content.">
+    <title>MetaMechanists - a Minecraft Slimefun server</title>
+</head>
+
+
+<body class="background-index">
+    <main-menu></main-menu>
+
+    <div class="content-main">
+        <div class="title-div" id="title-div">
+            <p class="title-name">PERCY<br>BAKER</p>
+            <p class="title-description">First year Computer Science student at Southampton University. Programming nerd. Space enthusiast. Robot overlord.</p>
+            <p class="title-contact-text"><img class="title-contact-icon" src="image/icons/email.svg"></i>percy.baker.0@gmail.com</p>
+            <a href="https://github.com/LordIdra" target=_blank class="title-contact-text"><img class="title-contact-icon" src="image/icons/github.svg"></i>https://github.com/LordIdra</a>
+        </div>
+        <canvas class="glslCanvas" data-fragment="
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+uniform float u_time;
+uniform vec2 u_resolution;
+
+vec3 palette(float t) {
+    vec3 col = vec3(1.0);
+    if (t > 0.85) {
+        col.r += 0.5*t;
+    } else if (t < 0.1) {
+        col.b += 5.0*t;
+    }
+    return col;
+}
+
+float rand(float x) {
+    return fract(sin(x)*929846.0);
+}
+
+float rand(vec2 x) {
+    return rand(dot(x, vec2(19420.6, 8998.0)));
+}
+
+vec2 rocket_location(float x) {
+    float steepness = 4.0;
+    return vec2(x, -exp(-steepness * x));
+}
+
+float get_t() {
+    return 0.7 - 0.7*exp(-0.3*u_time);
+}
+
+vec3 rocket_trail_color(float x, float y) {
+    x += 0.3;
+    if (x > get_t()) {
+        return vec3(0.0);
+    }
+
+    float dist = length(rocket_location(x) - vec2(x, y));
+    if (dist < 0.1) {
+        dist *= 20.0;
+        dist = 0.1 / dist;
+        return vec3(1.0+y) * dist;
+    } else {
+        return vec3(0.0);
+    }
+}
+
+vec3 rocket_burn_color(float x, float y) {
+    x += 0.3;
+    float flicker_rate = 50.0;
+    vec2 rocket_location = rocket_location(get_t());
+    float distance = length(vec2(x, y) - rocket_location);
+    float point_1 = rand(floor(u_time*flicker_rate));
+    float point_2 = rand(floor(u_time*flicker_rate)+1.0);
+    float interpolated_point = point_1 + (point_2 - point_1)*fract(u_time*flicker_rate);
+    float flicker = 0.01 + (interpolated_point * 0.003);
+    return vec3(1.3, 1.1, 1.0) * (flicker / distance);
+}
+
+vec3 star_color(vec2 raw_uv) {
+    vec2 f = fract(16.0*raw_uv);
+    vec2 i = floor(16.0*raw_uv);
+    float hash = i.x*10000.0 + i.y;
+    vec2 coords = vec2(rand(i), rand(i)) * 0.8 + 0.1;
+    float dist = length(f - coords);
+    float phase = rand(hash+2.0) * 5.0;
+    float mul = rand(hash+1.0) * 4.0;
+    float div = rand(hash+2.0) * 2.0 + 1.0;
+    float twinkle = (sin(u_time * mul + phase) + 1.0) / div;
+    float size = rand(hash) * 0.01 * twinkle;
+    return palette(rand(hash+8.0)) * (size / dist) * (raw_uv.y + 1.0);
+}
+
+vec3 sky_color(float x, float y) {
+    return vec3(0.0, -y-0.8, -y-0.3);
+}
+
+void main() {
+    vec2 raw_uv = (gl_FragCoord.xy*2.0 - u_resolution.xy) / u_resolution.y;
+    float raw_angle = atan(raw_uv.y/raw_uv.x);
+    vec3 col = max(
+            max(star_color(raw_uv), rocket_trail_color(raw_uv.x, raw_uv.y)),
+            max(rocket_burn_color(raw_uv.x, raw_uv.y), sky_color(raw_uv.x, raw_uv.y)));
+    gl_FragColor = vec4(col, 1.0);
+}" style="width:100%; height: 80%; background:#000000;" id="canvas"></canvas>
+
+        <div class="info-div">
+            
+            <h1 class="info-h1">EDUCATION</h1>
+
+            <div class="education-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2">GCSEs</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/map-marker.svg"></i>Drayton Manor High School</p>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg"></i>Sep 2019 - Jun 2021</p>
+                <div class="education-result-box-subjects">
+                    Computer Science<br>
+                    Combined Science<br>
+                    Mathematics<br>
+                    Latin<br>
+                    Spanish<br>
+                    Geography<br>
+                    English Literature<br>
+                    Music<br>
+                    English Language
+                </div>
+                <div class="education-result-box-grades">
+                    9<br>
+                    8/9<br>
+                    8<br>
+                    8<br>
+                    8<br>
+                    8<br>
+                    7<br>
+                    7<br>
+                    6
+                </div>
+            </div>
+
+            <div class="education-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2">A-Levels</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/map-marker.svg"></i>Drayton Manor High School</p>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg"></i>Sep 2021 - Jun 2023</p>
+                <div class="education-result-box-subjects">
+                    Computer Science<br>
+                    Maths<br>
+                    Physics<br>
+                    Further Maths<br>
+                    EPQ
+                </div>
+                <div class="education-result-box-grades">
+                    A*<br>
+                    A*<br>
+                    A*<br>
+                    A<br>
+                    A*
+                </div>
+            </div>
+
+            <div class="education-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2">Degree</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/map-marker.svg"></i>Southampton University</p>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg"></i>Sep 2023 - ongoing</p>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/school.svg"></i>MEng Computer Science (4 years)</p>
+            </div>
+
+
+            <br><br><br><br>
+            <h1 class="info-h1">SKILLS</h1>
+
+            <div class="skills-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2"><img class="skills-icon" src="image/icons/translate.svg">Languages</h2>
+                <span class="skills-tab-text">C++</span>
+                <span class="skills-tab-text">Java</span>
+                <span class="skills-tab-text">Rust</span>
+            </div>
+
+            <div class="skills-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2"><img class="skills-icon" src="image/icons/bookshelf.svg">Libraries</h2>
+                <span class="skills-tab-text">Catch2</span>
+                <span class="skills-tab-text">OpenGL</span>
+                <span class="skills-tab-text">WebGL</span>
+                <span class="skills-tab-text">imgui</span>
+                <span class="skills-tab-text">GLFW</span>
+                <span class="skills-tab-text">GLM</span>
+                <span class="skills-tab-text">JOML</span>
+            </div>
+
+            <div class="skills-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2"><img class="skills-icon" src="image/icons/tools.svg">Development Tools</h2>
+                <span class="skills-tab-text">CMake</span>
+                <span class="skills-tab-text">Maven</span>
+                <span class="skills-tab-text">Tracy</span>
+                <span class="skills-tab-text">Jenkins</span>
+                <span class="skills-tab-text">VScode</span>
+                <span class="skills-tab-text">IntelliJ</span>
+            </div>
+
+            <div class="skills-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2"><img class="skills-icon" src="image/icons/console.svg">Administration</h2>
+                <span class="skills-tab-text">Linux</span>
+                <span class="skills-tab-text">Screen</span>
+                <span class="skills-tab-text">SSH</span>
+                <span class="skills-tab-text">FTP</span>
+                <span class="skills-tab-text">Nginx</span>
+                <span class="skills-tab-text">Cloudflare</span>
+            </div>
+
+            <div class="skills-div pure-u-1 pure-u-md-1-3 pure-u-lg-1-3">
+                <h2 class="info-h2"><img class="skills-icon" src="image/icons/account-heart.svg">Soft Skills</h2>
+                <span class="skills-tab-text">Creativity</span>
+                <span class="skills-tab-text">Leadership</span>
+                <span class="skills-tab-text">Flexibility</span>
+                <span class="skills-tab-text">Problem Solving</span>
+            </div>
+
+
+            <br><br><br><br>
+            <h1 class="info-h1">PROJECTS</h1>
+
+            <div class="projects-div">
+                <h2 class="info-h2">Game server community</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg">Dec 2020 - ongoing</p>
+                <a target="_blank" href="https://metamechanists.org/" class="education-meta-text">
+                    <img class="education-meta-icon" src="image/icons/link-variant.svg">https://metamechanists.org/
+                </a>
+                <br>
+                
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Manage a team of 8 volunteers with different strengths and responsibilities</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Process staff applications and conduct interviews (10+ interviews conducted)</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Maintain infrastructure including Jenkins CI, automated backups, 8 game servers, Cloudflare DNS, MariaDB database, and more</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Handle support tickets including disputes, bugs, and suggestions (400+ tickets resolved so far)</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Maintain a website including a public wiki and internal documentation</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Engage with community members to collect feedback and decide next steps</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Develop new software in Java with a team of 3 volunteer developers</li><br>
+                </div>
+            </div>
+
+            <div class="projects-div">
+                <h2 class="info-h2">CPU from scratch #2</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg">Apr 2023 - May 2022</p>
+                <a target="_blank" href="https://github.com/LordIdra/photon" class="education-meta-text">
+                    <img class="education-meta-icon" src="image/icons/github.svg">https://github.com/LordIdra/photon
+                </a>
+                <br>
+                
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Iterated multiple designs & layers of abstraction to improve & simplify the schematics</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Thoroughly applied lessons learnt from building the first CPU to create a substantially more powerful second CPU in 3x less time</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Wrote a C++ software suite to aid programming, debugging, & testing the CPU</li><br>
+                </div>
+            </div>
+
+            <div class="projects-div">
+                <h2 class="info-h2">Compiler</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg">Oct 2022 - Feb 2023</p>
+                <a target="_blank" href="https://github.com/LordIdra/EPQ" class="education-meta-text">
+                    <img class="education-meta-icon" src="image/icons/github.svg">https://github.com/LordIdra/EPQ
+                </a>
+                <br>
+                
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Completed the project as an EPQ and received 48/50 marks</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Gave a presentation explaining the project to laypeople</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Built a table-based parser & semantic analyser from scratch</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Wrote a CPU simulation to thoroughly test compiler output</li><br>
+                </div>
+            </div>
+
+            <div class="projects-div">
+                <h2 class="info-h2">Interactive 3D orbit simulator</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg">Jul 2022 - Oct 2022</p>
+                <a target="_blank" href="https://github.com/LordIdra/OSTRICH" class="education-meta-text">
+                    <img class="education-meta-icon" src="image/icons/github.svg">https://github.com/LordIdra/OSTRICH
+                </a>
+                <br>
+                
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Completed the project as Computer Science coursework, received 70/70 marks</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Gained experience with low-level graphics & ui libraries</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Applied multithreading & implemented a sophisticated caching system to improve performance</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Focused on code quality, resulting in a well-structured project</li><br>
+                </div>
+            </div>
+
+            <div class="projects-div">
+                <h2 class="info-h2">CPU from scratch #1</h2>
+                <p class="education-meta-text"><img class="education-meta-icon" src="image/icons/calendar-month.svg">Oct 2021 - Oct 2022</p>
+                <a target="_blank" href="https://www.youtube.com/watch?v=eRkPx6mdbC0" class="education-meta-text">
+                    <img class="education-meta-icon" src="image/icons/youtube.svg">https://www.youtube.com/watch?v=eRkPx6mdbC0
+                </a>
+                <br>
+                
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Put together a video explaining the CPU and the design/build process to laypeople</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Designed the vast majority of the CPU through several iterations</li><br>
+                </div>
+
+                <img class="projects-icon" src="image/icons/circle-medium.svg">
+                <div class="projects-list-text-div">
+                    <span class="education-meta-text"> Worked as a team with two friends to build the CPU on breadboards</li><br>
+                </div>
+            </div>
+
+            <a href="oh no">
+                <div class="projects-see-all-div-1">
+                    <div class="projects-see-all-div-2">
+                        <h2 class="projects-see-all-text">See all my projects</h2>
+                        <img class="projects-see-all-icon" src="image/icons/chevron-double-right.svg">
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+    <script src="index.js"></script>
+    <script src="components/main-menu.js"></script>
+    <script src="components/education-result-box.js"></script>
+
+</body>
+</html>
